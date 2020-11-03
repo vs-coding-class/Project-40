@@ -9,35 +9,33 @@ var database;
 var form, player, game;
 
 var cars, car1, car2, car3, car4;
-
-var track, car1_img, car2_img, car3_img, car4_img;
+var car_1,car_2,car_3,car_4,track,track_img;
 
 function preload(){
-  track = loadImage("images/Track.png");
-  car1_img = loadImage("images/PLAYER.PNG");
-  car2_img = loadImage("images/PLAYER.PNG");
-  car3_img = loadImage("images/PLAYER.PNG");
-  car4_img = loadImage("images/PLAYER.PNG");
+  car_1 = loadAnimation("images/r1.png","images/r2.png","images/r3.png","images/r4.png");
+  start_img = loadImage("images/start1.png");
+  car_2 = loadAnimation("images/runner22.png","images/runner23.png","images/runner24.png");
+  car_3 = loadImage("images/plr1.png");
+  car_4 = loadImage("images/plr2.png");
+  track = loadImage("images/track.png");
+  obs_image = loadImage("images/hurdle.png");
 }
 
 function setup(){
-  canvas = createCanvas(displayWidth - 20, displayHeight-30);
+  canvas = createCanvas(displayWidth-30, 400);
   database = firebase.database();
   game = new Game();
   game.getState();
   game.start();
 }
 
-
 function draw(){
   if(playerCount === 4){
     game.update(1);
   }
+
   if(gameState === 1){
     clear();
     game.play();
-  }
-  if(gameState === 2){
-    game.end();
   }
 }
